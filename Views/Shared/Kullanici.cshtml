@@ -1,0 +1,36 @@
+﻿
+@model projemynei.Models.SaticilarKullanicilar
+
+
+<div class="container-fluid" >
+    @*<h1>hoşgeldiniz</h1>*@
+
+    @if (User.Identity.IsAuthenticated)
+    {
+    @*<p>Hoşgeldiniz @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(User.Identity.Name);</p>*@ 
+        foreach (var item in Model.kullanicilars)
+
+        {
+        
+            if (item.KullaniciAdi == User.Identity.Name)
+            {
+
+                @*<a>@item.Resim</a>*@
+                <div class="dropdown">
+                    <img src="~/Image/@item.Resimler.ResimYoluKullanici" width="75" height="75">
+                    <div class="dropdown-content" style="width:200px;height:100px;background-color:transparent;">
+
+                        <a style="color:burlywood" class="dropdown-item waves-effect waves-light" href="#"> Hoşgeldiniz @item.KullaniciAdi</a>
+                        <br />
+                
+                        <a style="color:burlywood" class="dropdown-item waves-effect waves-light" href="/Index/CikisYap">Çıkış Yap</a><br />
+                        @*<img src="~/Image/@item.Resimler.ResimYol1" alt="Cinque Terre" width="500" height="200">*@
+
+                    </div>
+
+                </div>
+
+            }
+        }
+    } 
+</div>

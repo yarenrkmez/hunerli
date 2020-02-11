@@ -1,0 +1,109 @@
+﻿
+
+@model projemynei.Models.UrunlerResimler
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/Urunler.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+    <script>
+        $(document).ready(function myfunction() {
+            $(".SepeteAt").click(function myfunction() {
+                var uid = $(this).attr("name");
+                //alert(uid);
+                $.ajax({
+                    type: "Get",
+                    url: "/Urunler/SepeteEkle",
+                    data: { id: uid },
+                    success: function myfunction() {
+                        //alert("success");
+                        $.ajax({
+                            type: "Get",
+                            url: "/Urunler/MiniSepetWidget",
+                            success: function VeriGetir(veri) {
+                                //alert(veri);
+                                $(".minisepet").html(' ');
+                                $(".minisepet").html(veri);
+                            }
+                        });
+                    },
+                    error: function myfunction() {
+                        //alert("error");
+                    }
+
+                });
+
+            });
+
+        });
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+
+<body style="background-image: url('../../Content/Anasf.jpg');">
+    <nav class="navbar" style="width:1279px;height:80px;background-color:white;opacity:0.8">
+        <div class="nav-item">        @Html.ActionLink("Ana Sayfa", "Index", "Index")</div>
+        <div class="nav-item" style="padding-left:1000px;">
+            @{
+                Html.RenderAction("MiniSepetWidget", "Urunler");
+            }
+        </div>
+
+   
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+    </nav>
+    <br /><br />    <br /><br />  
+    <div class="row">
+
+        @foreach (var item in Model.urunlers)
+        {
+            <div class="col-md-3" style="padding-left:50px;">
+
+                <div class="card" style="width:300px;height:300px;background-color:white;opacity:0.8">
+
+                    @foreach (var item2 in Model.resimlers)
+                    {
+                        if (item2.UrunID == item.UrunID)
+                        {
+                            <img src="~/Image/@item2.ResimYolu1Satici" class="" alt="urunresim" style="width:250px;height:100px;padding-left:130px;padding-top:20px">
+                        }
+
+                    }
+
+                <div class="container">
+                    <h2>@item.UrunAdi</h2>
+                    <p class="title">Hünerli; @item.Saticilar.Adi</p>
+                    <p>@item.UrunAciklama</p>
+                    <p>@item.Fiyati</p>
+                    <button name="@item.UrunID" class="button SepeteAt"> SepeteAt</button>
+                   <a href="/Urunler/UrunDetay/@item.UrunID">ÜRün Detay</a>
+                    @*@Html.ActionLink("Ürün Detay", "UrunDetay", "Urunler")*@
+                </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+</body>
+
+
+</html >

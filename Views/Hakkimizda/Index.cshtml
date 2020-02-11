@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Hakkımızda</title>
+    <link href="~/Content/VideoSAyfa.css" rel="stylesheet" />
+</head>
+<body>
+    <video autoplay muted loop id="myVideo" style="background-size:cover">
+        <source src="~/Content/Ads%c4%b1z%20tasar%c4%b1m%20(1).mp4"  type="video/mp4">
+     
+    </video>
+
+    <div class="content">
+        <h1>Hünerli</h1>
+        <p>El hünerini konuşturacağınız,vaktiniz yoksa birbirinden güzel el işlerini alabileceğiniz size olduk.a kolaylık sağlayan platform.Aynı zamanda El emeğinizle ailenizin bütçesine katkı sağlayabilirsiniz</p>
+        <button id="myBtn" onclick="myFunction()">Pause</button>
+        @Html.ActionLink("Ana Sayfa", "Index","Index")
+    </div>
+
+    <script>
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("myBtn");
+
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pause";
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+  }
+}
+    </script>
+</body>
+</html>

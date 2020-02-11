@@ -1,0 +1,46 @@
+﻿@*@model projemynei.Models.Urunler*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*@model IEnumerable<projemynei.Models.Saticilar>*@
+@model projemynei.Models.HomePageViewModel
+<div class="container">
+    <h3 class="page-header">Ürün Ekle</h3>
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <h1>Hoşgeldin @User.Identity.Name</h1>
+
+
+    }
+<form method="post" class="dropzone" action="UrunEkle" enctype="multipart/form-data" role="form" style="height:200px;width:200px;">
+    <div class="form-group">
+        <input name="UrunAdi" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ürün Adı Gir">
+    </div>
+    <div class="form-group">
+        <input name="UrunAciklama" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ÜRünün Açıklamasını Gir">
+    </div>
+    <div class="form-group">
+        <input name="Fiyati" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fiyat">
+    </div>
+
+
+    <div class="col-md-5 ">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Ürün Resmi</label>
+            <input type="file" name="Resim"  multiple/>
+        </div>
+    </div>
+
+    <div class="col-md-5 ">
+        <button type="submit" class="btn btn-danger">Submit</button>
+    </div>
+
+</form>
+
+
+
+</div>
+@*<button type="submit" class="btn btn-danger">Submit</button>*@

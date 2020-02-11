@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HunerlisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bilgiler">
+    <Key>
+      <PropertyRef Name="BilgilerID" />
+    </Key>
+    <Property Name="TelNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Adres" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BilgilerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <NavigationProperty Name="Kullanicilars" Relationship="Self.FK_Kullanicilar_Bilgiler" FromRole="Bilgiler" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Saticilars" Relationship="Self.FK_Saticilar_Bilgiler" FromRole="Bilgiler" ToRole="Saticilar" />
+  </EntityType>
+  <EntityType Name="Kargo">
+    <Key>
+      <PropertyRef Name="KargoID" />
+    </Key>
+    <Property Name="KargoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SaticiID" Type="Int32" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <Property Name="KargoTakipNo" Type="Guid" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soyadi" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GizliSoru" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GizliCevap" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PpID" Type="Int32" Nullable="false" />
+    <Property Name="BilgilerID" Type="Int32" />
+    <Property Name="UserType" Type="Int32" />
+    <NavigationProperty Name="Bilgiler" Relationship="Self.FK_Kullanicilar_Bilgiler" FromRole="Kullanicilar" ToRole="Bilgiler" />
+    <NavigationProperty Name="Resimler" Relationship="Self.FK_Kullanicilar_Resimler1" FromRole="Kullanicilar" ToRole="Resimler" />
+    <NavigationProperty Name="Satis" Relationship="Self.FK_Satis_Kullanicilar" FromRole="Kullanicilar" ToRole="Satis" />
+  </EntityType>
+  <EntityType Name="Resimler">
+    <Key>
+      <PropertyRef Name="ResimID" />
+    </Key>
+    <Property Name="ResimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunID" Type="Int32" />
+    <Property Name="ResimYoluKullanici" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ResimYolu1Satici" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ResimYolu2Satici" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ResimYolu3Satici" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SaticiID" Type="Int32" />
+    <NavigationProperty Name="Kullanicilars" Relationship="Self.FK_Kullanicilar_Resimler1" FromRole="Resimler" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Urunlers" Relationship="Self.FK_Urunler_Resimler1" FromRole="Resimler" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Saticilar">
+    <Key>
+      <PropertyRef Name="SaticiID" />
+    </Key>
+    <Property Name="SaticiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soyadi" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BilgilerID" Type="Int32" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GizliSoru" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GizliCevap" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UrunID" Type="Int32" />
+    <Property Name="UserType" Type="Int32" />
+    <NavigationProperty Name="Bilgiler" Relationship="Self.FK_Saticilar_Bilgiler" FromRole="Saticilar" ToRole="Bilgiler" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_Saticilar_Urunler" FromRole="Saticilar" ToRole="Urunler" />
+    <NavigationProperty Name="Urunlers" Relationship="Self.FK_Urunler_Saticilar" FromRole="Saticilar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Sati">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MusteriID" Type="Int32" />
+    <Property Name="SatisTarihi" Type="DateTime" Precision="0" />
+    <Property Name="ToplamTutar" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SaticiID" Type="Int32" />
+    <Property Name="SiparisDurum" Type="Int32" />
+    <Property Name="KargoTakipNo" Type="Int32" />
+    <Property Name="BilgilerID" Type="Int32" />
+    <Property Name="UrunlerID" Type="Int32" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Satis_Kullanicilar" FromRole="Satis" ToRole="Kullanicilar" />
+    <NavigationProperty Name="SatisDetays" Relationship="Self.FK_SatisDetay_Satis" FromRole="Satis" ToRole="SatisDetay" />
+    <NavigationProperty Name="Sepets" Relationship="Self.FK_Sepet_Satis" FromRole="Satis" ToRole="Sepet" />
+  </EntityType>
+  <EntityType Name="SatisDetay">
+    <Key>
+      <PropertyRef Name="SatisID" />
+    </Key>
+    <Property Name="SatisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeslimatDetay" Type="Boolean" />
+    <Property Name="SaticiID" Type="Int32" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <Property Name="UrunID" Type="Int32" />
+    <Property Name="SID" Type="Int32" />
+    <NavigationProperty Name="Sati" Relationship="Self.FK_SatisDetay_Satis" FromRole="SatisDetay" ToRole="Satis" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_SatisDetay_Urunler" FromRole="SatisDetay" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="UrunID" />
+    </Key>
+    <Property Name="UrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunAdi" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="UrunAciklama" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Fiyati" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ResimID" Type="Int32" />
+    <Property Name="SaticiID" Type="Int32" />
+    <NavigationProperty Name="Resimler" Relationship="Self.FK_Urunler_Resimler1" FromRole="Urunler" ToRole="Resimler" />
+    <NavigationProperty Name="Saticilars" Relationship="Self.FK_Saticilar_Urunler" FromRole="Urunler" ToRole="Saticilar" />
+    <NavigationProperty Name="Saticilar" Relationship="Self.FK_Urunler_Saticilar" FromRole="Urunler" ToRole="Saticilar" />
+    <NavigationProperty Name="SatisDetays" Relationship="Self.FK_SatisDetay_Urunler" FromRole="Urunler" ToRole="SatisDetay" />
+    <NavigationProperty Name="Sepets" Relationship="Self.FK_Sepet_Urunler" FromRole="Urunler" ToRole="Sepet" />
+  </EntityType>
+  <EntityType Name="Sepet">
+    <Key>
+      <PropertyRef Name="SepetID" />
+    </Key>
+    <Property Name="SepetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SatisID" Type="Int32" />
+    <Property Name="UrunID" Type="Int32" />
+    <NavigationProperty Name="Sati" Relationship="Self.FK_Sepet_Satis" FromRole="Sepet" ToRole="Satis" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_Sepet_Urunler" FromRole="Sepet" ToRole="Urunler" />
+  </EntityType>
+  <Association Name="FK_Kullanicilar_Bilgiler">
+    <End Role="Bilgiler" Type="Self.Bilgiler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bilgiler">
+        <PropertyRef Name="BilgilerID" />
+      </Principal>
+      <Dependent Role="Kullanicilar">
+        <PropertyRef Name="BilgilerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Saticilar_Bilgiler">
+    <End Role="Bilgiler" Type="Self.Bilgiler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Saticilar" Type="Self.Saticilar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bilgiler">
+        <PropertyRef Name="BilgilerID" />
+      </Principal>
+      <Dependent Role="Saticilar">
+        <PropertyRef Name="BilgilerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanicilar_Resimler1">
+    <End Role="Resimler" Type="Self.Resimler" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resimler">
+        <PropertyRef Name="ResimID" />
+      </Principal>
+      <Dependent Role="Kullanicilar">
+        <PropertyRef Name="PpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Satis_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Satis" Type="Self.Sati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Satis">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Resimler1">
+    <End Role="Resimler" Type="Self.Resimler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resimler">
+        <PropertyRef Name="ResimID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Saticilar_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Saticilar" Type="Self.Saticilar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunID" />
+      </Principal>
+      <Dependent Role="Saticilar">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Saticilar">
+    <End Role="Saticilar" Type="Self.Saticilar" Multiplicity="0..1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Saticilar">
+        <PropertyRef Name="SaticiID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="SaticiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SatisDetay_Satis">
+    <End Role="Satis" Type="Self.Sati" Multiplicity="0..1" />
+    <End Role="SatisDetay" Type="Self.SatisDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Satis">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SatisDetay">
+        <PropertyRef Name="SID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sepet_Satis">
+    <End Role="Satis" Type="Self.Sati" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Satis">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sepet">
+        <PropertyRef Name="SatisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SatisDetay_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SatisDetay" Type="Self.SatisDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunID" />
+      </Principal>
+      <Dependent Role="SatisDetay">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sepet_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+    <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunID" />
+      </Principal>
+      <Dependent Role="Sepet">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HunerlisEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bilgilers" EntityType="Self.Bilgiler" />
+    <EntitySet Name="Kargoes" EntityType="Self.Kargo" />
+    <EntitySet Name="Kullanicilars" EntityType="Self.Kullanicilar" />
+    <EntitySet Name="Resimlers" EntityType="Self.Resimler" />
+    <EntitySet Name="Saticilars" EntityType="Self.Saticilar" />
+    <EntitySet Name="Satis" EntityType="Self.Sati" />
+    <EntitySet Name="SatisDetays" EntityType="Self.SatisDetay" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Urunlers" EntityType="Self.Urunler" />
+    <EntitySet Name="Sepets" EntityType="Self.Sepet" />
+    <AssociationSet Name="FK_Kullanicilar_Bilgiler" Association="Self.FK_Kullanicilar_Bilgiler">
+      <End Role="Bilgiler" EntitySet="Bilgilers" />
+      <End Role="Kullanicilar" EntitySet="Kullanicilars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Saticilar_Bilgiler" Association="Self.FK_Saticilar_Bilgiler">
+      <End Role="Bilgiler" EntitySet="Bilgilers" />
+      <End Role="Saticilar" EntitySet="Saticilars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanicilar_Resimler1" Association="Self.FK_Kullanicilar_Resimler1">
+      <End Role="Resimler" EntitySet="Resimlers" />
+      <End Role="Kullanicilar" EntitySet="Kullanicilars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Satis_Kullanicilar" Association="Self.FK_Satis_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilars" />
+      <End Role="Satis" EntitySet="Satis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Resimler1" Association="Self.FK_Urunler_Resimler1">
+      <End Role="Resimler" EntitySet="Resimlers" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Saticilar_Urunler" Association="Self.FK_Saticilar_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Saticilar" EntitySet="Saticilars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Saticilar" Association="Self.FK_Urunler_Saticilar">
+      <End Role="Saticilar" EntitySet="Saticilars" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SatisDetay_Satis" Association="Self.FK_SatisDetay_Satis">
+      <End Role="Satis" EntitySet="Satis" />
+      <End Role="SatisDetay" EntitySet="SatisDetays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sepet_Satis" Association="Self.FK_Sepet_Satis">
+      <End Role="Satis" EntitySet="Satis" />
+      <End Role="Sepet" EntitySet="Sepets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SatisDetay_Urunler" Association="Self.FK_SatisDetay_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="SatisDetay" EntitySet="SatisDetays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sepet_Urunler" Association="Self.FK_Sepet_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Sepet" EntitySet="Sepets" />
+    </AssociationSet>
+    <FunctionImport Name="SatisidP" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HunerlisModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HunerlisModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SatisidP_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+  </ComplexType>
+</Schema>

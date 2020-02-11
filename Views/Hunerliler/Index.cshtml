@@ -1,0 +1,307 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model IEnumerable<projemynei.Models.Saticilar>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .row > .column {
+            padding: 0 8px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Create four equal columns that floats next to eachother */
+        .column {
+            float: left;
+            width: 25%;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: black;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #999;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        /* Hide the slides by default */
+        .mySlides {
+            display: none;
+        }
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover,
+            .next:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* Caption text */
+        .caption-container {
+            text-align: center;
+            background-color: black;
+            padding: 2px 16px;
+            color: white;
+        }
+
+        img.demo {
+            opacity: 0.6;
+        }
+
+        .active,
+        .demo:hover {
+            opacity: 1;
+        }
+
+        img.hover-shadow {
+            transition: 0.3s;
+        }
+
+        .hover-shadow:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+    <body style="background-image: url('../../Content/Anasf.jpg');">
+        <nav class="navbar" style="background-color:darkred">
+
+            @*<img src="~/Content/home.png"  />*@
+            @Html.ActionLink("Anasayfa", "Index", "Index")
+
+        </nav>
+        <br /><br /><br />
+        <!-- Images used to open the lightbox -->
+        <div class="row">
+            <div class="column">
+
+
+                @foreach (var item in Model)
+                {<div class="container" style="padding-left:60px; background-color:burlywood;opacity:0.7;width:200px;height:200px;">
+    <img src="~/Content/icons8-clew-50.png" onclick="openModal();currentSlide(1)" class="hover-shadow">
+    <h5 class="card-title">@item.KullaniciAdi</h5>
+    <p class="card-text">hakkinda..</p>
+    <a href="" class=" btn-danger">Daha Fazlası..</a>
+</div>
+                        }
+
+                  
+
+                </div>
+        </div>
+
+        <!-- The Modal/Lightbox -->
+        <div id="myModal" class="modal">
+            <span class="close cursor" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+
+                <div class="mySlides">
+                    <div class="numbertext">1 / 4</div>
+                    <img src="~/Content/icons8-clew-50.png" style="width:100%">
+                </div>
+            </div>
+        </div>
+        <!-- Next/previous controls -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <!-- Caption text -->
+
+
+        <script>
+            // Open the Modal
+            function openModal() {
+                document.getElementById("myModal").style.display = "block";
+            }
+
+            // Close the Modal
+            function closeModal() {
+                document.getElementById("myModal").style.display = "none";
+            }
+
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            // Next/previous controls
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            // Thumbnail image controls
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("demo");
+                var captionText = document.getElementById("caption");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                captionText.innerHTML = dots[slideIndex - 1].alt;
+            }
+        </script>
+
+    </body>
+    </html>
+
+
+
+
+
+
+@*<table class="container-fluid">
+        <thead>
+            <tr>
+                <th>AD</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.KullaniciAdi</td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+
+
+@*@foreach (var item in Model)
+{
+
+    <div class="container-fluid" style="color:azure">
+        <div class="col-lg-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/icons8-clew-50.png" width="50" height="50" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Adi&emsp;@item.Soyadi</h5>
+                    <p class="card-text">hakkinda..</p>
+                    <a href="#" class="btn btn-primary">Daha Fazlası..</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}*@
+
+
+
+@*<div style="padding-bottom:200px;">
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            foreach (var item in Model)
+
+            {
+
+                if (item.KulaniciAdi == User.Identity.Name)
+                {
+
+                    <a>@item.Resim</a>
+                    <div class="dropdown">
+                        <img src="~/Image/@item.Resimler.ResimYol1" width="200" height="200">
+                        <div class="dropdown-content" style="width:200px;height:100px;background-color:transparent;">
+
+                            <a style="color:burlywood" class="dropdown-item waves-effect waves-light" href="#"> Hoşgeldiniz @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(User.Identity.Name);</a>
+                            <br />
+                            <a style="color:burlywood" class="dropdown-item waves-effect waves-light" href="/Admin/Index">İşlemlerim</a><br />
+                            <a style="color:burlywood" class="dropdown-item waves-effect waves-light" href="/Index/CikisYap">Çıkış Yap</a><br />
+                            <img src="~/Image/@item.Resimler.ResimYol1" alt="Cinque Terre" width="500" height="200">
+
+                        </div>
+
+                    </div>
+
+                }
+            }
+        }
+    </div>*@

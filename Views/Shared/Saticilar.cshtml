@@ -1,0 +1,39 @@
+﻿@*@using projemynei.Models
+    @model IEnumerable<Saticilar>*@
+
+@model projemynei.Models.SaticilarKullanicilar
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid">
+    @*<h1>hoşgeldiniz</h1>*@
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        foreach (var item in Model.saticilars)
+
+        {
+
+            if (item.KullaniciAdi == User.Identity.Name)
+            {
+
+                @*<a>@item.Resim</a>*@
+                <div class="dropdown">
+                    @*<img src="~/Image/@item.Resimler.ResimYoluKullanici" width="75" height="75">*@
+                    @*<div class="dropdown-content" style="width:100px;height:100px;background-color:transparent;padding-left:100px">*@
+
+                    <a style="color:black" class="dropdown-item waves-effect waves-light" href="#"> Hoşgeldiniz @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(User.Identity.Name);</a>
+                    <br />
+                    <a style="color:black" class="dropdown-item waves-effect waves-light" href="/Index/Islemlerim">İşlemlerim</a><br />
+                    <a style="color:black" class="dropdown-item waves-effect waves-light" href="/Index/CikisYap">Çıkış Yap</a><br />
+                    @*<img src="~/Image/@item.Resimler.ResimYol1" alt="Cinque Terre" width="500" height="200">*@
+
+                </div>
+
+                @*</div>*@
+
+            }
+        }
+    }
+</div>

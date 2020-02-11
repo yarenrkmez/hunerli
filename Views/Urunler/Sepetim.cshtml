@@ -1,0 +1,246 @@
+﻿@model projemynei.Models.BilgilerKullanicilar
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ödeme Alanı</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script>
+        $(document).ready(function myfunction() {
+            $(".UrunSil").click(function UrunSil() {
+                var uId = $(this).attr("name");
+                $.ajax({
+                    type: "Get",
+                    url: "/Urunler/SepetUrunSil",
+                    data: { id: uId },
+                    success: function myfunction() {
+                        //alert("success");
+                        $.ajax({
+                            type: "Get",
+                            url: "/Urunler/Sepetim",
+                            success: function myfunction(veri) {
+
+
+                                $(".sepet").html(' ');
+                                $(".sepet").html(veri);
+
+                            }
+                        });
+                    },
+                    error: function myfunction() {
+                        alert("error");
+                    }
+                });
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+    @{
+        var id = ViewData["id"];
+        projemynei.Models.Urunler urunler = new projemynei.Models.Urunler();
+
+
+    }
+
+ 
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                @*<form class="form-horizontal span6" method="post" action="Ode" role="form">*@
+                @using (Html.BeginForm("Ode", "Urunler", FormMethod.Post))
+                { 
+                    <fieldset>
+                        <legend>Ödeme</legend>
+
+                        <div class="control-group">
+                            <label class="control-label">Kartın Üzerindeki İsim</label>
+                            <div class="controls">
+                                <input type="text" class="input-block-level" pattern="\w+ \w+.*" title="Fill your first and last name" required>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Kart Numarası</label>
+                            <div class="controls">
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <input type="text" class="input-block-level" autocomplete="off" maxlength="4" pattern="\d{4}" title="First four digits" required>
+                                    </div>
+                                    <div class="span3">
+                                        <input type="text" class="input-block-level" autocomplete="off" maxlength="4" pattern="\d{4}" title="Second four digits" required>
+                                    </div>
+                                    <div class="span3">
+                                        <input type="text" class="input-block-level" autocomplete="off" maxlength="4" pattern="\d{4}" title="Third four digits" required>
+                                    </div>
+                                    <div class="span3">
+                                        <input type="text" class="input-block-level" autocomplete="off" maxlength="4" pattern="\d{4}" title="Fourth four digits" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Kart Tarih Bilgileri</label>
+                            <div class="controls">
+                                <div class="row-fluid">
+                                    <div class="span9">
+                                        <select class="input-block-level">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
+                                    <div class="span3">
+                                        <select class="input-block-level">
+                                            <option>2016</option>
+                                            <option>2017</option>
+                                            <option>2018</option>
+                                            <option>2019</option>
+                                            <option>2020</option>
+                                            <option>2021</option>
+                                            <option>2022</option>
+                                            <option>2023</option>
+                                            <option>2024</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"> CVV</label>
+                            <div class="controls">
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <input type="text" class="input-block-level" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required>
+                                    </div>
+                                    <div class="span8">
+                                        <label>Tutar:@projemynei.App_Class.Basket.AktifSepet.ToplamTutar</label>
+                                        <input id="Id" name="ToplamTutar" type="hidden" value="@projemynei.App_Class.Basket.AktifSepet.ToplamTutar" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @{
+                            projemynei.App_Class.Basket basket = new projemynei.App_Class.Basket();
+                            basket = (projemynei.App_Class.Basket)HttpContext.Current.Session["AktifSepet"];//sessiondaki verileri kullanmak için
+                            <div class="card sepet" style="width:400px;">
+
+                                @foreach (var item in basket.Urunler)
+                                {
+                                    <a class="dropdown-item" href="#">Ürün Adı= @item.urunler.UrunAdi,Adet = @item.Adet</a>
+
+
+                                    <input name="UrunID" value="@item.urunler.UrunID" hidden />
+
+                                    <button class="btn btn-danger UrunSil" name="@item.urunler.UrunID">Ürünleri Sil</button>
+                                    <p style="border:dashed"></p>
+
+                                }
+                            </div>
+
+
+                        }
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Bilgilerim</h5>
+                                <p class="card-text">
+                                    @{ 
+                                     
+                                                                        <h1>sonuc= @ViewData["satisid"];</h1>
+                                    }
+                                    @foreach (var item in Model.bilgilers)
+                                    {
+
+                                        if (id.ToString() == item.KullaniciID.ToString())
+                                        {
+                                            @item.Email <br />
+                                            @item.TelNo<br />
+                                            @item.Adres<br />
+                                            <div class="form-check">
+                                                <input class="form-check-input Rbutton" type="checkbox" name=" BilgilerID" id="Rbutton" value="@item.BilgilerID">
+                                                <input type="text" name="BilgilerID" value="@item.BilgilerID" hidden />
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    Adresi  Kullan
+                                                </label>
+                                            </div>
+                                            <br style="border:dashed" />
+                                        }
+                                    }
+                                </p>
+                                @*<a href="#" class="btn btn-primary">Kullan</a>*@
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Öde</button>
+                            @Html.ActionLink("İşlemi İptal Et", "Index", "Index")
+                        </div>
+                    </fieldset>
+                    }
+                @*</form>*@
+
+                <form class="form-horizontal span6" method="post" action="Islemlerim" role="form">
+                    <h3>Bilgi Ekle</h3>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email:</label>
+                            <input type="email" name="Email" class="form-control" id="inputEmail4" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Adres:</label>
+                        <input type="text" name="Adres" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Tel No:</label>
+                        <input type="text" name="TelNo" class="form-control" id="inputAddress" />
+                    </div>
+                    @*<div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">Şehir</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select id="inputState" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+            </div>*@
+
+                    <button type="submit" class="btn btn-primary">Bilgilerimi Ekle</button>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

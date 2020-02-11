@@ -1,0 +1,39 @@
+﻿@*@using projemynei.Models
+    @model List<Kullanicilar>*@
+@model projemynei.Models.SaticilarKullanicilar
+@{
+    ViewBag.Title = "Index";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container" style="background-color:white;color:black;width:300px;height:300px">
+        <h1>hoşgeldiniz</h1>
+        @Html.Partial("Kullanici")
+
+        @Html.Partial("Saticilar")
+    </div>
+}
+
+
+
+
+
+@*@Html.Partial("Kullanici")*@
+@*<table>
+        <thead>
+        <tr>
+            <th>AD</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.KulaniciAdi</td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+

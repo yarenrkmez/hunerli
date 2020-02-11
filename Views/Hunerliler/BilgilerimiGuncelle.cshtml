@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "BilgilerimiGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>BilgilerimiGuncelle</h2>
+<h1>Bilgi Ekle</h1>
+
+<form method="post" action="Islemlerim" role="form" style="height:200px;width:200px;">
+    <div class="form-group">
+        <input type="email" name="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email Gir">
+    </div>
+    <div class="form-group">
+        <input type="text" name="TelNo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Telefon Numarası Gir">
+    </div>
+    <div class="form-group">
+        <input type="text" name="Adres" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adres Gir">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Bilgilerimi Kaydet</button>
+</form>
+

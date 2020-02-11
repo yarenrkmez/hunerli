@@ -1,0 +1,66 @@
+﻿@model projemynei.App_Class.Basket
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function myfunction() {
+        $(".UrunSil").click(function UrunSil() {
+            var uId = $(this).attr("name");
+            $.ajax({
+                type: "Get",
+                url: "/Urunler/SepetUrunSil",
+                data: { id: uId },
+                success: function myfunction() {
+                    alert("success");
+                    $.ajax({
+                        type: "Get",
+                        url: "/Urunler/MiniSepetWidget",
+                        success: function myfunction(veri) {
+                            $(".minisepet").html(' ');
+                            $(".minisepet").html(veri);
+
+                        }
+                    });
+                },
+                error: function myfunction() {
+                     //alert("error");
+                }
+            });
+        });
+    });
+</script>
+
+<div class="dropdown minisepet" style="padding-right:1000px;">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sepetim
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        @if (Model != null)
+        {
+            foreach (var item in Model.Urunler)
+            {
+                <a class="dropdown-item" href="#">Ürün Adı= @item.urunler.UrunAdi,Adet = @item.Adet</a>
+               
+
+                    <input name="UrunID" value="@item.urunler.UrunID" hidden/>
+               
+                <a class="dropdown-item" href="/Urunler/UrunDetay/@item.urunler.UrunAdi">Detay         </a>
+                <button class="btn btn-danger UrunSil" name="@item.urunler.UrunID">Ürünleri Sil</button>
+                <p style="border:dashed"></p>
+
+            }
+
+            <a class="dropdown-item" href="#">Sepetim Toplam Tutar :@Model.ToplamTutar.ToString("C2")</a>
+         
+            <a class="btn btn-danger" href="/Urunler/Sepetim/">Sipariş Et</a>
+
+
+        }
+        else
+        {
+            <a> 0 tl </a>
+        }
+    </div>
+
+</div>

@@ -1,0 +1,40 @@
+﻿@*@model IEnumerable<projemynei.Models.Urunler>*@
+@model  projemynei.Models.ResimUrun
+@{
+    ViewBag.Title = "Ürünlerim";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ürünlerim</h2>
+
+@{
+    var id = ViewData["SaticiID"];
+    var ad = ViewData["SaticiAdi"];
+}
+<h1>@id</h1>
+
+@foreach (var item2 in Model.resimlers)
+{
+    if (@item2.ResimYolu1Satici != null && item2.SaticiID == Convert.ToInt32(id))
+
+    {
+        <img class="card-img-top" src="~/Image/@item2.ResimYolu1Satici" style="width:100px;height:100px;">
+    }
+
+}
+<div class="card-body">
+    @foreach (var item in Model.urunlers)
+
+    {
+        if (item.SaticiID == Convert.ToInt32(id))
+        {
+            <h5 class="card-title">@item.UrunAdi</h5>
+            <p class="card-text">@item.UrunAciklama</p>
+            <a href="#" class="btn btn-primary">Düzenle</a>
+
+
+        }
+    }
+</div>
+
+

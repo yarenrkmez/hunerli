@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "GirisYap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row " style="color:white">
+    <div class="col-md-6">
+        <h2>Kullanıcı İçin</h2>
+        @Html.Partial("_UserGiris")
+    </div>
+    <div class="col-md-6">
+        <h2>Hünerli İçin</h2>
+        @Html.Partial("_HunerliGiris")
+    </div>
+</div>
+

@@ -1,0 +1,80 @@
+﻿@model projemynei.Models.SaticilarKullanicilar
+
+
+
+
+
+
+    <nav class="navbar navbar-light bg-light navbar-fixed-top" style="padding-top:25px;padding-left:100px;background-color:black;opacity:0.8;color:firebrick">
+
+
+
+        <a class="btn" style="color:firebrick;"> <img src="~/Content/icons8-clew-50.png" /><strong>Hünerli</strong></a>
+
+        @Html.ActionLink("Ana Sayfa", "Index", "Index")
+        @Html.ActionLink("Hünerliler", "Index", "Hunerliler")
+        @*<a class="btn" style="color:firebrick" href="#contact">Hakkımızda</a>*@
+        @Html.ActionLink("Hakkımızda", "Index", "Hakkimizda")
+        @Html.ActionLink("Ürünler", "Index", "Urunler")
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a class="btn" style="color:firebrick" href="Ekle">      @Html.ActionLink("Giriş Yap", "GirisYap")</a>
+            <a class="btn" style="color:firebrick" href="Ekle">      @Html.ActionLink("Kayıt Ol", "Ekle")</a>
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            foreach (var item in Model.saticilars)
+            {
+                if (item.UserType == 2 && item.KullaniciAdi == User.Identity.Name)
+                {
+                    @Html.ActionLink("Hesabım", "Index", "Admin")
+                }
+            }
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            foreach (var item in Model.kullanicilars)
+            {
+                if (item.UserType == 1 && item.KullaniciAdi == User.Identity.Name)
+                {
+                    @*<a class="btn" style="color:firebrick" href="/Admin/Index">Sepetim</a>*@
+                    @Html.ActionLink("Sepetim", "Index", "Urunler")
+                }
+            }
+        }
+
+
+
+
+        @*<a href="#"><i class="fa fa-search"></i></a>
+        @*<a></a>*@
+        @*@Html.Partial("Kullanici")*@
+
+
+    </nav>
+
+
+
+
+@*<div class="bg-img">
+        <div class="container">
+            <div class="nav">
+                <a class="hunerli btn-danger" id="hunerli">Hünerli</a>
+                <a href="Index">Ana Sayfa</a>
+                <a href="#news">Hünerliler</a>
+                <a href="#contact">Hakkımızda</a>
+                <a href="#contact">Ürüner</a>
+
+
+
+
+
+            </div>
+        </div>
+    </div>*@
+
+

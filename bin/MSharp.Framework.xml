@@ -1,0 +1,1413 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MSharp.Framework</name>
+    </assembly>
+    <members>
+        <member name="T:MSharp.Framework.Data.Ado.Net.OleDbDataProvider">
+            <summary>
+            Provides a DataProvider for accessing data from the database using ADO.NET based on the OleDb provider.
+            </summary>
+        </member>
+        <member name="T:MSharp.Framework.Data.Ado.Net.OdbcDataProvider">
+            <summary>
+            Provides a DataProvider for accessing data from the database using ADO.NET based on the ODBC provider.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.DefaultApplicationEventManager.GetCurrentUserIP">
+            <summary>
+            Gets the IP address of the current user.
+            </summary>
+        </member>
+        <member name="T:MSharp.Framework.Services.IImpersonator">
+            <summary>
+            Defines an admin user who can impersonate other users.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.Services.IImpersonator.ImpersonationToken">
+            <summary>
+            A unique single-use-only cookie-based token to specify the currently impersonated user session.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.IImpersonator.CanImpersonate(MSharp.Framework.Services.IUser)">
+            <summary>
+            Determines if this user can impersonate the specified other user.
+            </summary>
+        </member>
+        <member name="T:MSharp.Framework.Services.ImpersonationSession">
+            <summary>
+            Provides the business logic for ImpersonationContext class.
+            </summary>
+        </member>
+        <member name="F:MSharp.Framework.Services.ImpersonationSession.CurrentUserProvider">
+            <summary>
+            Provides the current user. 
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.ImpersonationSession.IsImpersonated">
+            <summary>
+            Determines if the current user is impersonated.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.ImpersonationSession.Impersonate(MSharp.Framework.Services.IUser,System.Boolean,System.String)">
+            <summary>
+            Impersonates the specified user by the current admin user.
+            </summary>
+            <param name="originalUrl">If not specified, the current HTTP request's URL will be used.</param>
+        </member>
+        <member name="M:MSharp.Framework.Services.ImpersonationSession.End">
+            <summary>
+            Ends the current impersonation session.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.Services.ImpersonationSession.Impersonator">
+            <summary>
+            Gets the original user who impersonated the current user.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.IpFilter.SetGlobalPolicy(MSharp.Framework.Services.IpFilter.Policy)">
+            <summary>
+            Sets the default policy for all IP addresses.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.IpFilter.SetSpecificIpPolicy(MSharp.Framework.Services.IpFilter.Policy,System.String[])">
+            <summary>
+            Sets the policy for specific IP addresses. These will override the global, region and country policies.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.IpFilter.SetCountryPolicy(MSharp.Framework.Services.IpFilter.Policy,System.String[])">
+            <summary>
+            Sets the IP Filter policy. All Disallow policies should be set first, then all Allow policies.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.IpFilter.SetRegionPolicy(MSharp.Framework.Services.IpFilter.Policy,System.String[])">
+            <summary>
+            Sets the IP Filter policy. All Disallow policies should be set first, then all Allow policies.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.IpFilter.BlockIfNecessary">
+            <summary>
+             If the IP address of the current user is in a blocked list, then it will terminate the request with a response saying:
+             This website is not available in your region.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.Compiler.#ctor">
+            <summary>
+            Creates a new Compiler instance.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.DynamicExpressionsCompiler`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Creates a new DynamicExpressionsCompiler instance.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.DynamicExpressionsCompiler`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Type)">
+            <summary>
+            Creates a new DynamicExpressionsCompiler instance.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.Rss.RssChannel.#ctor">
+            <summary>
+            Creates a new RssChannel instance.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.Rss.RssServer.GenerateXml(MSharp.Framework.Services.Rss.RssChannel)">
+            <summary>
+            Generates Rss Xml document for the specified items.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.Rss.RssServer.Dispatch(MSharp.Framework.Services.Rss.RssChannel)">
+            <summary>
+            Dispatches an Xml document in the current http response.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.Testing.Snapshot.GetList(System.Boolean)">
+            <summary>
+            Gets the list of current snapshots on disk.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.UrlRewriting.Escape(System.String)">
+            <summary>
+            Creates a suitable string for urls.
+            </summary>        
+        </member>
+        <member name="M:MSharp.Framework.Services.UrlRewriting.FindRequestedResource">
+            <summary>
+            Gets the Currently requested resource.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.UrlRewriting.FindRequestedResource(System.Boolean)">
+            <summary>
+            Gets the Currently requested resource.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.UrlRewriting.Matches(MSharp.Framework.Services.IWebResource,System.String)">
+            <summary>
+            Determines if this web resource's Url matches a given path.
+            </summary>
+        </member>
+        <member name="T:MSharp.Framework.Services.CookieProperty">
+            <summary>
+            Provides easy access to HTTP cookie data.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Get``1">
+            <summary>
+            Gets the value of the property sent from the client browser as a cookie.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Get(System.String)">
+            <summary>
+            Gets the value of a string property sent from the client browser as a cookie.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Get``1(``0)">
+            <summary>
+            Gets the value of the property sent from the client browser as a cookie.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Get``1(System.String)">
+            <summary>
+            Gets the value of the property sent from the client browser as a cookie.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Get``1(System.String,``0)">
+            <summary>
+            Gets the value of the property sent from the client browser as a cookie.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Set``1(``0,System.Boolean)">
+            <summary>
+            Sets a specified value in the response cookie as well as request cookie.
+            </summary>
+            <param name="isHttpOnly">Specifies whether the cookie should be accessible via Javascript too, or Server (http) only.</param>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Set``1(System.String,``0,System.Boolean)">
+            <summary>
+            Sets a specified value in the response cookie as well as request cookie.
+            </summary>
+            <param name="isHttpOnly">Specifies whether the cookie should be accessible via Javascript too, or Server (http) only.</param>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.SetList``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary>
+            Sets a specified list in the response cookie as well as request cookie.
+            </summary>
+            <param name="isHttpOnly">Specifies whether the cookie should be accessible via Javascript too, or Server (http) only.</param>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.GetList``1">
+            <summary>
+            Sets a specified list in the response cookie as well as request cookie.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.GetList``1(System.String)">
+            <summary>
+            Gets a specified list in the response cookie as well as request cookie.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Remove``1">
+            <summary>
+            Removes the specified cookie property.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Remove``1(System.String)">
+            <summary>
+            Removes the specified cookie property.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Remove(System.String)">
+            <summary>
+            Removes the specified cookie property.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Set(System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Sets a specified value in the response cookie as well as request cookie.
+            </summary>
+            <param name="isHttpOnly">Specifies whether the cookie should be accessible via Javascript too, or Server (http) only.</param>
+        </member>
+        <member name="M:MSharp.Framework.Services.CookieProperty.Set(System.String,System.String,System.Boolean)">
+            <summary>
+            Sets a specified value in the response cookie as well as request cookie.
+            </summary>
+            <param name="isHttpOnly">Specifies whether the cookie should be accessible via Javascript too, or Server (http) only.</param>
+        </member>
+        <member name="T:MSharp.Framework.Services.WebCapture">
+            <summary>
+            This class provides utilities to capture an image from a web url
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebCapture.#ctor">
+            <summary>
+            Creates a new WebCapture instance.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.Services.WebCapture.OutputFormat">
+            <summary>
+            Output format default: PNG
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.Services.WebCapture.MinWidth">
+            <summary>
+            Gets or sets the MinWidth of this WebCapture.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.Services.WebCapture.MinHeight">
+            <summary>
+            Gets or sets the MinHeight of this WebCapture.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.Services.WebCapture.Delay">
+            <summary>
+            After successful load, wait X milliseconds (default: 0)
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.Services.WebCapture.Javascript">
+            <summary>
+            JavaScript execution (default: on)
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.Services.WebCapture.MaxWait">
+            <summary>
+            Maximum time in millisecond that the process should take to capture the snapshot.
+            if ths time is passed the system would throw exception. DEFAULT: 20,000
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebCapture.GetArguments(System.String,System.String)">
+            <summary>
+            Prepares arguments for capturing executable
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebCapture.Capture(System.String)">
+            <summary>
+            Gets the byte array of an image captured from the given url
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebCapture.CaptureBitmap(System.String)">
+            <summary>
+            Gets the bitmap captured from the given url
+            To get the data you can call .ToBuffer(ImageFormat.Png).
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebCapture.Capture(System.String,System.String)">
+            <summary>
+            Capturs from the given url and stores it in the gievn file path
+            </summary>
+        </member>
+        <member name="T:MSharp.Framework.Services.WebRequestLogService">
+            <summary>
+            Provides services to web request log objects.
+            </summary>
+        </member>
+        <member name="F:MSharp.Framework.Services.WebRequestLogService.WebRequestLogFactory">
+            <summary>
+            Specifies a factory to instantiate WebRequestLog objects.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebRequestLogService.Record(MSharp.Framework.Services.IWebRequestLog,System.Web.HttpContext)">
+            <summary>
+            Records this web request log in the provided http context.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebRequestLogService.CountRequestsInSession(MSharp.Framework.Services.IWebRequestLog)">
+            <summary>
+            Gets the number of requests made in the same session.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebRequestLogService.GetLastVisitedUrl(MSharp.Framework.Services.IWebRequestLog)">
+            <summary>
+            Gest the last url visited in this session.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebRequestLogService.GetData(MSharp.Framework.Services.IWebRequestLog,System.String)">
+            <summary>
+            Gets the value of a query string key.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.Services.WebRequestLogService.FindRecentSessions(System.TimeSpan)">
+            <summary>
+            Gets the first request of every session that has had an activity during the last 10 minutes.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Controls.AutoComplete.#ctor">
+            <summary>
+            Creates a new AutoComplete instance.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.SelectedValueBox">
+            <summary>
+            Gets or sets the SelectedValueBox of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.AutoPostBack">
+            <summary>
+            Gets or sets the AutoPostBack of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.OnSelectedValueChange">
+            <summary>
+            Gets or sets the OnSelectedValueChanged of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.OnCollapse">
+            <summary>
+            Gets or sets the OnCollapse of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.RequestDelay">
+            <summary>
+            Gets or sets the RequestDelay of this AutoComplete DEFAULT IS 300.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.ExpandOnFocus">
+            <summary>
+            Gets or sets the ExpandOnFocus of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.OptimizedMode">
+            <summary>
+            Gets or sets the OptimizedMode of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.SourceProvider">
+            <summary>
+            Gets or sets the SourceProvider of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.ClientSide">
+            <summary>
+            Gets or sets the ClientSide of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.Items">
+            <summary>
+            Gets or sets the Items of this control.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.WatermarkText">
+            <summary>
+            Gets or sets the WatermarkText of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.NotFoundText">
+            <summary>
+            Gets or sets the NotFoundText of this AutoComplete.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Controls.AutoComplete.SetSelectedItem(System.String,System.String)">
+            <summary>
+            Sets the selected item.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.Text">
+            <summary>
+            Gets or sets the Text of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.LoadingText">
+            <summary>
+            Gets or sets the LoadingText of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.InnerTextBox">
+            <summary>
+            Gets or sets the InnerTextBox of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.ItemsPanel">
+            <summary>
+            Gets or sets the ItemsPanel of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.SelectedValue">
+            <summary>
+            Gets or sets the SelectedValue of this AutoComplete.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.TextBoxOnly">
+            <summary>
+            Disables auto complete behaviour and acts like a normal text box
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Controls.AutoComplete.OnPreRender(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Web.UI.Control.PreRender"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
+        </member>
+        <member name="M:MSharp.Framework.UI.Controls.AutoComplete.Focus(System.Boolean)">
+            <summary>
+            Sets input focus to a control.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Controls.AutoComplete.Focus">
+            <summary>
+            Sets input focus to a control.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.AutoComplete.PageCount">
+            <summary>
+            Gets or sets the PageCount of this AutoComplete.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Controls.AutoComplete.GetCallbackResult(System.Collections.Generic.IEnumerable{System.Web.UI.WebControls.ListItem},System.String)">
+            <summary>
+            Gets the callback result of the given items in autocomplete-feidnly json format.
+            </summary>
+            <param name="items">items to be serialized</param>
+            <param name="filter">filter that is used to produce these items</param>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.CollapsibleCheckBoxList.HideDelay">
+            <summary>
+            Gets or sets the HideDelay of this MultiSelectList.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.CollapsibleCheckBoxList.PluralName">
+            <summary>
+            Gets or sets the PluralName of this MultiSelectList.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.CollapsibleCheckBoxList.InitialSearchText">
+            <summary>
+            Gets or sets the InitialSearchText of this MultiSelectList.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.CollapsibleCheckBoxList.NotSetText">
+            <summary>
+            Gets or sets the NotSetText of this MultiSelectList.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Controls.CollapsibleCheckBoxList.#ctor">
+            <summary>
+            Creates a new MultiSelectList instance.
+            </summary>
+        </member>
+        <member name="T:MSharp.Framework.UI.Controls.HoverButton">
+            <summary>
+            A control that displays an image, hover image and responds to mouse clicks on the image.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Controls.NumericUpDown.#ctor">
+            <summary>
+            Creates a new NumericUpDown instance.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.NumericUpDown.PlusLink">
+            <summary>
+            Gets or sets the PlusLink of this NumericUpDown.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.NumericUpDown.MinusLink">
+            <summary>
+            Gets or sets the MinusLink of this NumericUpDown.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.NumericUpDown.PlusImageUrl">
+            <summary>
+            Gets or sets the PlusImageUrl of this NumericUpDown.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.NumericUpDown.MinusImageUrl">
+            <summary>
+            Gets or sets the MinusImageUrl of this NumericUpDown.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.NumericUpDown.Minimum">
+            <summary>
+            Gets or sets the Minimum of this NumericUpDown.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.NumericUpDown.Maximum">
+            <summary>
+            Gets or sets the Maximum of this NumericUpDown.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.Controls.NumericUpDown.StepSize">
+            <summary>
+            Gets or sets the StepSize of this NumericUpDown.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.BaseHttpApplication.OnFirstRequest">
+            <summary>
+            Called once, when the first ever request is being executed.
+            It's called after processing Web.Test.Commands.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.BaseHttpApplication.ShouldNotify(System.Exception)">
+            <summary>
+            Determines whether a notification for the specified error be emailed.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.BaseHttpApplication.RetrieveActualUser(System.Security.Principal.IPrincipal)">
+            <summary>
+            Retrieves the actual user implementation based on the basic ASP.NET principle info.
+            </summary>
+        </member>
+        <member name="F:MSharp.Framework.UI.HttpApplication.LoadUser">
+            <summary>
+            Loads the IUser object from the specified ASP.NET user principal.
+            </summary>
+        </member>
+        <member name="F:MSharp.Framework.UI.ListContainer`1.Filters">
+            <summary>
+            Gets the filters added for search.
+            </summary>
+        </member>
+        <member name="F:MSharp.Framework.UI.ListContainer`1.Item">
+            <summary>
+            Represents the current datasource item in the list.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.GetSelectedItem">
+            <summary>
+            Gets the item on which the current command is executing.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.OnPreRender(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:PreRender"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.GetSelectedColumnsCookieName">
+            <summary>
+            Gets the name of the Selected Columns cookie.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.GetSortExpressionKey">
+            <summary>
+            Gets the name of the sort expression cookie key.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.AddFilter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Adds a filter to the search conditions.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.ClearFilters">
+            <summary>
+            Clears all filters from this list.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.ListContainer`1.SortExpression">
+            <summary>
+            Gets or sets the current sort expression of this module.                
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.ResetSortExpression(System.String)">
+            <summary>
+            Resets the sort expression to the specified value.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.GetFilterCriteria">
+            <summary>
+            Gets the filter criteria of this list.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.GetQueryOptions">
+            <summary>
+            Gets the query options to use with the database query.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.GetGroups">
+            <summary>
+            Gets the groups of the currently selected grouping expression.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.GetGroup(System.Object)">
+            <summary>
+            Gets the items that fall into a specified group.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.ListContainer`1.AddSearchFilters">
+            <summary>
+            Adds search filter expressions to this list's data source.
+            </summary>
+        </member>
+        <member name="T:MSharp.Framework.UI.MasterPage">
+            <summary>
+            Base Page containing base common functionality, all pages inherit from this.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.MasterPage.GetLogInUrl">
+            <summary>
+            Gets the basic raw url of the login page applicable to this master page.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.MessageBoxManager.#ctor(System.Web.UI.Page)">
+            <summary>
+            Creates a new MessageBoxManager instance.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.MessageBoxManager.Page_PreRenderComplete(System.Object,System.EventArgs)">
+            <summary>
+            Applies the Render scripts for this message box on the specified page.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.MessageBoxManager.Show(System.Object)">
+            <summary>
+            Shows the specified message object's ToString() to the user.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.MessageBoxManager.Show(System.String)">
+            <summary>
+            Shows the specified message to the user.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.MessageBoxManager.ShowGently(System.Object)">
+            <summary>
+            Gently shows the specified message object's ToString() to the user.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.MessageBoxManager.ShowGently(System.String)">
+            <summary>
+            Gently shows the specified message to the user.
+            </summary>
+        </member>
+        <member name="T:MSharp.Framework.UI.Page">
+            <summary>
+            Base Page containing base common functionality, all pages inherit from this.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.Focus(System.Web.UI.Control)">
+            <summary>
+            Sets startup focus on a specified control.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.RedirectToLoginPage">
+            <summary>
+            Redirects the user to the Login Page.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.GetVirtualPath(System.String)">
+            <summary>
+            Gets the virtual path of a resource file.
+            </summary>
+            <param name="resourceLocation">The path of the resource from the root of the website. For example "Content/style.css"</param>
+        </member>
+        <member name="P:MSharp.Framework.UI.Page.RequiredScheme">
+            <summary>
+            Determines the required scheme (http / https) for this page.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Initializes the <see cref="T:System.Web.UI.HtmlTextWriter"/> object and calls on the child controls of the <see cref="T:System.Web.UI.Page"/> to render.
+            </summary>
+            <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter"/> that receives the page content.</param>
+        </member>
+        <member name="E:MSharp.Framework.UI.Page.PostBackEventRaising">
+            <summary>
+            Occurs just before PostBackEvent is raised.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.RaisePostBackEvent(System.Web.UI.IPostBackEventHandler,System.String)">
+            <summary>
+            Raises the post back event.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.Refresh">
+            <summary>
+            This will redirect the user to the current Request.Url.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.Translate(System.String)">
+            <summary>
+            Will return the translation of the specified phrase in the language specified in user's cookie (or default language).
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.TranslateHtml(System.String)">
+            <summary>
+            Will return the translation of the specified html block in the language specified in user's cookie (or default language).
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.PageUrl(System.String)">
+            <summary>
+            Gets the URL to a page specified by its resource key (from Site Map).
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.GetPageUrl(System.String)">
+            <summary>
+            Gets the URL to a page specified by its resource key (from Site Map).
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.IsFromUpdatePanel">
+            <summary>
+            Determines whether the current request is From inside an update panel.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.CloseModal">
+            <summary>
+            Closes the current modal window.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.CloseModal(System.AfterClose)">
+            <summary>
+            Closes the current modal window.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.CloseModal(System.String)">
+            <summary>
+            Closes the current modal window.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.CloseModal(System.AfterClose,System.String)">
+            <summary>
+            Closes the current modal window.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.GetReturnUrl">
+            <summary>
+            Gets the currently specified return URL.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.InitOutputCache(System.Web.UI.OutputCacheParameters)">
+            <summary>
+            http://support.microsoft.com/kb/316431
+            This method is trying to solve the problem of downloading files in IE through secure access protocol (https)
+            </summary>
+            <param name="cacheSettings"></param>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.ShouldGZip">
+            <summary>
+            Determines whether GZip should be enabled on this page's response.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.Page.RegisterScriptFile(System.String,MSharp.Framework.UI.ScriptInsertLocation)">
+            <summary>
+            Registers an external script url on this page.
+            </summary>
+            <param name="location">Specifies whether the script should be added to the page header. If False, it will be added to the </param>
+        </member>
+        <member name="T:MSharp.Framework.UI.UserControl">
+            <summary>
+            Represents an .ascx file, also known as a user control, requested from a
+            server that hosts an ASP.NET Web application. The file must be called from
+            a Web Forms page or a parser error will occur.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.#ctor">
+            <summary>
+            Creates a new UserControl instance.
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.UserControl.Page">
+            <summary>
+            Gets a reference to the <see cref="T:System.Web.UI.Page"/> instance that contains the server control.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.Translate(System.String)">
+            <summary>
+            Will return the translation of the specified phrase in the language specified in user's cookie (or default language).
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.TranslateHtml(System.String)">
+            <summary>
+            Will return the translation of the specified html block in the language specified in user's cookie (or default language).
+            </summary>
+        </member>
+        <member name="P:MSharp.Framework.UI.UserControl.IsCallBack">
+            <summary>
+             Gets a value indicating whether the page request is the result of a call back.
+             Returns true if the page request is the result of a call back; otherwise, false.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.ProcessAjaxCall(System.String[])">
+            <summary>
+            This should return an anonymous object. Each property of that object will be exposed to the client-side function
+            via a JSon object.
+            </summary>
+            <param name="arguments">The parameters sent by the client call.</param>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.PageUrl(System.String)">
+            <summary>
+            Gets the URL to a page specified by its resource key (from Site Map).
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.CloseModal">
+            <summary>
+            Closes the current modal window.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.CloseModal(System.AfterClose,System.String)">
+            <summary>
+            Closes the current modal window.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.CloseModal(System.AfterClose)">
+            <summary>
+            Closes the current modal window.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.CloseModal(System.String)">
+            <summary>
+            Closes the current modal window.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.UserControl.GetReturnUrl">
+            <summary>
+            Gets the currently specified return URL.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.LazyModule.#ctor">
+            <summary>
+            Creates a new LazyModule instance.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.AjaxScriptManagerCombinedScriptProvider.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler"/> interface.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpContext"/> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
+        </member>
+        <member name="P:MSharp.Framework.UI.AjaxScriptManagerCombinedScriptProvider.IsReusable">
+            <summary>
+            Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler"/> instance.
+            </summary>
+            <returns>true if the <see cref="T:System.Web.IHttpHandler"/> instance is reusable; otherwise, false.</returns>
+        </member>
+        <member name="M:MSharp.Framework.UI.JavascriptVariable.#ctor(System.Web.UI.Control)">
+            <summary>
+            Creates a new JavascriptVariable instance.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.SortExpressionProperty.#ctor(System.Web.UI.StateBag,System.Web.UI.WebControls.GridView,System.String,System.Boolean)">
+            <summary>
+            Creates a new SortExpressionProperty instance.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.SortExpressionProperty.SetDirect(System.String)">
+            <summary>
+            Sets the specified value directly without processing it.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.SortExpressionProperty.Set(System.String)">
+            <summary>
+            Sets the specified sort expression. It processes DESC before setting it to create the toggle effect.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.WebTestManager.IsSanityExecutionMode">
+            <summary>
+            Determines if the application is currently being ran by Sanity.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.WebTestManager.IsTddExecutionMode">
+            <summary>
+            Determines whether the application is running under Temp database mode.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.UI.WebTestManager.DispatchTasksList">
+            <summary>
+            To invoke this, send a request to /?web.test.command=tasks
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.SecureFileDispatcher.#ctor(System.String,MSharp.Framework.Services.IUser)">
+            <summary>
+            Creates a new SecureFileDispatcher instance.
+            </summary>
+        </member>
+        <member name="F:MSharp.Framework.SecureFileDispatcher.UnauthorisedRequestEventArgs.Property">
+            <summary>
+            A property of type Document which represents the requested file property.
+            </summary>
+        </member>
+        <member name="F:MSharp.Framework.SecureFileDispatcher.UnauthorisedRequestEventArgs.Instance">
+            <summary>
+            The object on which the document property was requested.
+            </summary>
+        </member>
+        <member name="F:MSharp.Framework.SecureFileDispatcher.UnauthorisedRequestEventArgs.Exception">
+            <summary>
+            The security error raised by M# framework.
+            </summary>
+        </member>
+        <member name="M:MSharp.Framework.AWS.WebRequestHandler.RegisterDocumentOwnerTypesContainer(System.Reflection.Assembly)">
+            <summary>
+            Call this in Global.asax for the entities model assembly.
+            </summary>
+        </member>
+        <member name="T:System.MSharpExtensionsWeb">
+            <summary>
+            Provides extensions methods to Standard .NET types.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.RegisterScriptFile(System.Web.UI.UserControl,System.String,MSharp.Framework.UI.ScriptInsertLocation)">
+            <summary>
+            Registers an external script url on this page.
+            </summary>
+            <param name="location">Specifies whether the script should be added to the page header. If False, it will be added to the </param>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Restart(System.Web.HttpApplication)">
+            <summary>
+            It will restart the application.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.ToDocument(System.Web.HttpPostedFile)">
+            <summary>
+            Initializes a new Document instance, for the specified posted file.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.SendAsNotification(System.Exception)">
+            <summary>
+            Sends this error as a notification email to the address in web.config as Error.Notification.Receiver.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.SendAsNotification(System.Exception,System.String)">
+            <summary>
+            Sends this error as a notification email to the address in web.config as Error.Notification.Receiver.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Configure(System.Net.Mail.SmtpClient)">
+            <summary>
+            Configures this smtp client with the specified config file path.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.SetAllSelected``1(System.Web.UI.WebControls.ListControl,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Sets the selected items of this list control to the specified array of objects.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.SetSelectedItem``1(System.Web.UI.WebControls.ListControl,``0)">
+            <summary>
+            Sets the selected item of this list control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.SetSelectedItem(MSharp.Framework.UI.Controls.AutoComplete,MSharp.Framework.IEntity)">
+            <summary>
+            Sets the selected item.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Get``1(System.Web.HttpRequest)">
+            <summary>
+            Returns an object whose ID is given in query string with the key of "id".
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetCookies(System.Web.HttpRequest)">
+            <summary>
+            Gets the cookies sent by the client.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Get``1(System.Web.HttpRequest,System.String)">
+            <summary>
+            Gets the data with the specified type from QueryString[key].
+            If the specified type is an entity, then the ID of that record will be read from query string and then fetched from database.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetValue(System.Web.HttpRequest,System.String)">
+            <summary>
+            Returns a string value specified in the request context.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetValue``1(System.Web.HttpRequest,System.String)">
+            <summary>
+            Returns a value specified in the request context.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetEntity``1(System.Web.HttpRequest,System.String,System.Boolean)">
+            <summary>
+            Gets the record with the specified type. The ID of the record will be read from QueryString[key].
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetOrDefault``1(System.Web.HttpRequest)">
+            <summary>
+            Gets the record with the specified type. The ID of the record will be read from QueryString["id"].
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetOrDefault``1(System.Web.HttpRequest,System.String)">
+            <summary>
+            Gets the record with the specified type. The ID of the record will be read from QueryString[key].
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetList``1(System.Web.HttpRequest,System.String,System.Char)">
+            <summary>
+            Gets a list of objects of which Ids come in query string.
+            </summary>
+            <param name="key">The key of the query string element containing ids.</param>
+            <param name="seperator">The sepeerator of Ids in the query string value. The default will be comma (",").</param>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetSelected``1(System.Web.UI.WebControls.ListControl)">
+            <summary>
+            Gets the selected object on this list control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetItems(System.Web.UI.WebControls.ListControl)">
+            <summary>
+            Gets the items of this list control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetItems(System.Web.UI.WebControls.DataList)">
+            <summary>
+            Gets the items of this data list.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetRows(System.Web.UI.WebControls.GridView)">
+            <summary>
+            Gets the rows of this data list.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsMobile(System.Web.HttpRequest)">
+            <summary>
+            TODO: Refactor and clean this method.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsTaggedDeleted(System.Web.UI.WebControls.GridViewRow)">
+            <summary>
+            Determines whether this grid view row is tagged deleted.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.FindSearchKeyword(System.Web.HttpRequest)">
+            <summary>
+            Finds the search keywords used by this user on Google that led to the current request.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetIPAddress(System.Web.HttpRequest)">
+            <summary>
+            Gets the actual IP address of the user considering the Proxy and other HTTP elements.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsPrivateIp(System.String)">
+            <summary>
+            Determines if the given ip address is in any of the private IP ranges
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsLocalNetwork(System.Web.HttpRequest)">
+            <summary>
+            Determines whether this request is initiated from the local network, i.e. its IP starts with "192.168.".
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.WriteLine(System.Web.HttpResponse,System.String)">
+            <summary>
+            Writes the specified content wrapped in a DIV tag.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.RedirectPermanent(System.Web.HttpResponse,System.String)">
+            <summary>
+            Redirects the client to the specified URL with a 301 status (permanent).
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.RedirectPermanent(System.Web.HttpResponse,System.String,System.Boolean)">
+            <summary>
+            Redirects the client to the specified URL with a 301 status (permanent).
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.FlattenWithChildren(System.Web.UI.WebControls.MenuItem)">
+            <summary>
+            Returns a flat list of this item plus all items in its hierarchy.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.AddList``1(System.Web.SessionState.HttpSessionState,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the specified list to session state and returns a unique Key for that.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.AddList``1(System.Web.SessionState.HttpSessionState,System.Collections.Generic.IEnumerable{``0},System.TimeSpan)">
+            <summary>
+            Adds the specified list to session state and returns a unique Key for that.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetList``1(System.Web.SessionState.HttpSessionState,System.String)">
+            <summary>
+            Retrieves a list of objects specified by the session key which is previously generated by Session.AddList() method.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.ConvertPagerToLink(System.Web.UI.WebControls.GridView,System.String)">
+            <summary>
+            Converts the pager to query string-based links instead of the default post-back-driven model.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.SelectInHttpContext``2(System.Linq.ParallelQuery{``0},System.Func{``0,``1})">
+            <summary>
+            Runs the parallel select in the current HTTP context.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.InheritedRoles(System.Web.SiteMapNode)">
+            <summary>
+            Iterator recursively returning each role in the current nodes and all of it's ancestor roles.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsAccessibleToUser(System.Web.SiteMapNode,MSharp.Framework.Services.IUser)">
+            <summary>
+            Overloads the SiteMapNode->IsAccessibleToUser method to test if the given User can access a particular page.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Has(System.Web.HttpRequest,System.String)">
+            <summary>
+            Determines if the specified argument exists in the request (query string or form).
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Lacks(System.Web.HttpRequest,System.String)">
+            <summary>
+            Determines if a request parameter (route or query string) value does not exists for the specified key, or is empty.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsHttps(System.Web.HttpRequest)">
+            <summary>
+            Determines whether the scheme of the current request is HTTPS.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetAbsoluteUrl(System.Web.HttpRequest,System.String)">
+            <summary>
+            Gets the absolute URL for a specified relative url.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetPostBackControl(System.Web.UI.Page)">
+            <summary>
+            Returns the control on the page that caused the page to post back.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Restart(System.Web.HttpApplicationState)">
+            <summary>
+            Restarts the currently running web application.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetRow(System.Web.UI.WebControls.GridViewCommandEventArgs)">
+            <summary>
+            Gets the GridViewRow of this command.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.AddRange``1(System.Web.UI.WebControls.ListItemCollection,System.Collections.Generic.IEnumerable{``0},MSharp.Framework.Services.Globalization.ILanguage)">
+            <summary>
+            Adds the range of specified entities translated in the specified language.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.RenderHtml(System.Web.UI.Control)">
+            <summary>
+            Renders this control into a HTML string.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.HideAll(System.Web.UI.ControlCollection)">
+            <summary>
+            Hides all controls in a collection
+            </summary>
+            <param name="controls"></param>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetParentControls(System.Web.UI.Control)">
+            <summary>
+            Gets all parent controls of this control to the root.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsAncestorOf(System.Web.UI.Control,System.Web.UI.Control)">
+            <summary>
+            Determines is this control is the parent or ancestor of another control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.AddAfter(System.Web.UI.ControlCollection,System.Web.UI.Control,System.Web.UI.Control)">
+            <summary>
+            Adds a specified control after another existing control in this collection.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.AddAfter(System.Web.UI.ControlCollection,System.Web.UI.Control,System.String)">
+            <summary>
+            Adds a specified html content after another existing control in this collection.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.AddBefore(System.Web.UI.ControlCollection,System.Web.UI.Control,System.Web.UI.Control)">
+            <summary>
+            Adds a specified control before another existing control in this collection.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.AddBefore(System.Web.UI.ControlCollection,System.Web.UI.Control,System.String)">
+            <summary>
+            Adds a specified html content before another existing control in this collection.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.FindParent``1(System.Web.UI.Control)">
+            <summary>
+            Gets the first parent of this control which is of the specified type.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.ForBrowser(System.Web.UI.Control)">
+            <summary>
+            Gets a Javascript expression that yield access to this control.
+            </summary>        
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.ForJQuery(System.Web.UI.Control)">
+            <summary>
+            Gets a Javascript expression that yield a jQuery access to this control.
+            </summary>        
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.FindParentWithCss(System.Web.UI.Control,System.String)">
+            <summary>
+            Finds the parent of this control with the specified css class.
+            It navigates the control tree up until it finds a matching control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetCssClass(System.Web.UI.Control)">
+            <summary>
+            Gets the Css class of this control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.UnifyValidators(System.Web.UI.Control)">
+            <summary>
+            This solves the issue with multiple validation summary alert.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetAllChildren(System.Web.UI.Control)">
+            <summary>
+            Gets all children of this control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.TransferChildrenTo(System.Web.UI.Control,System.Web.UI.Control)">
+            <summary>
+            Transfers the children of this control to another specified control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.TransferTo(System.Web.UI.Control,System.Web.UI.Control)">
+            <summary>
+            Transfers this control to a new parent.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetValidators(System.Web.UI.Control,System.String)">
+            <summary>
+            Iterator returns all validators for this control and optional Validation group.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetValidators``1(System.Web.UI.Control,System.String)">
+            <summary>
+            Iterator returns all validators of type T for this control and optional Validation group.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetControlToValidate``1(System.Web.UI.WebControls.BaseValidator)">
+            <summary>
+            Returns the Control being validated by this Validator.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Remove(System.Web.UI.Control)">
+            <summary>
+            Removes this Control from it's parent Control on this Page.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsAjaxCall(System.Web.HttpRequest)">
+            <summary>
+            Determines whether this is an Ajax call.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Dispatch(System.Web.HttpResponse,System.Byte[],System.String,System.String,System.Boolean)">
+            <summary>
+            Dispatches a binary data block back to the client.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Dispatch(System.Web.HttpResponse,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            Dispatches a string back to the client as a file.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Dispatch(System.Web.HttpResponse,System.IO.FileInfo,System.String,System.String,System.Boolean)">
+            <summary>
+            Dispatches a file back to the client.
+            </summary>
+            <param name="fileName">If set to null, the same file name of the file will be used.</param>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Dispatch(System.Web.HttpResponse,MSharp.Framework.Document,System.String,System.Boolean)">
+            <summary>
+            Dispatches a file back to the client.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.SupportGZip(System.Web.HttpContext)">
+            <summary>
+            If the request accepts encoding of GZIP then it will compress the response.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsGet(System.Web.HttpRequest)">
+            <summary>
+            Determines if this is a GET http request.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsPost(System.Web.HttpRequest)">
+            <summary>
+            Determines if this is a POST http request.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetReturnUrl(System.Web.HttpRequest)">
+            <summary>
+            Gets the currently specified return URL.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.IsBrowser(System.Web.HttpBrowserCapabilities,System.String,System.Int32[])">
+            <summary>
+            Determines whether this is the specified browser and any of the specified major versions.
+            </summary>        
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Focus(System.Web.UI.Control,System.Boolean)">
+            <summary>
+            Adds Javascript code to safely set focus on the specified control.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.EndWith(System.Web.HttpResponse,System.String,System.String)">
+            <summary>
+            Writes the specified message in the response and then ends the response.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.InjectFile(System.Web.HttpFileCollection,System.String,System.Byte[],System.String,System.String)">
+            <summary>
+            Injects a file into this http file collection.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.ReadAllText(System.Web.HttpPostedFile)">
+            <summary>
+            Reads the full content of a posted text file.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.RemoveFile(System.Web.HttpFileCollection,System.String)">
+            <summary>
+            Removes a file from this http file collection with the specified key, if it exists.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetSelectedOrDefault``1(System.Web.UI.WebControls.ListControl)">
+            <summary>
+            Gets the selected object on this list control or returns null if no object exists for selected item.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.MakeTreeView(System.Web.UI.WebControls.GridView,System.Func{MSharp.Framework.Services.IHierarchy,System.Boolean})">
+            <summary>
+            Converts the grid view to a tree view by adding some spacer and a collapse icon
+            to the left side of a web control that has attribute [IsTreeNodeAnchor='true'].
+            In case there is not such control the first beginning of the row will be chosen.
+            </summary>
+            <param name="gridView">The grid view.</param>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.MakeTreeView(System.Web.UI.WebControls.GridView,System.Boolean)">
+            <summary>
+            Converts the grid view to a tree view by adding some spacer and a collapse icon
+            to the left side of a web control that has attribute [IsTreeNodeAnchor='true'].
+            In case there is not such control the first beginning of the row will be chosen.
+            </summary>
+            <param name="gridView">The grid view.</param>        
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Add(System.Web.UI.WebControls.TreeNodeCollection,MSharp.Framework.Services.IHierarchy)">
+            <summary>
+            Adds a hierarchy of nodes for a specified hirarchical item.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.Add``1(System.Web.UI.WebControls.TreeNodeCollection,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds a hierarchy of nodes for the specified hirarchical items.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetDataItem``1(System.Web.UI.WebControls.TreeNode)">
+            <summary>
+            Gets the data item of this node.
+            ID of the required object will be read from the Value of this node, and then the object of the specified type will be fetched from the database.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.FindNode(System.Web.UI.WebControls.TreeView,MSharp.Framework.IEntity)">
+            <summary>
+            Finds a node in this treeview with its Value equal to the specified object's id.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetSelectedIds(System.Web.UI.WebControls.TreeView)">
+            <summary>
+            Gets the selected object IDs in this tree view.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetAllChildren(System.Web.UI.WebControls.TreeNode)">
+            <summary>
+            Retreives a list of all the TreeNode objects that are descendants of this calling node, regardless of their degree of separation.
+            </summary>
+        </member>
+        <member name="M:System.MSharpExtensionsWeb.GetAllChildren(System.Web.UI.WebControls.TreeView)">
+            <summary>
+            Retreives a list of all the TreeNode objects that directly or indirectly children of this tree, regardless of their degree of separation.
+            </summary>
+        </member>
+    </members>
+</doc>
